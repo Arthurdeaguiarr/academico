@@ -1,47 +1,52 @@
-# Calculadoras em Flowgorithm: IMC e Áreas Geométricas
+# Atividade: Desenvolvimento de Calculadoras Multiuso em Flowgorithm
 
-Este repositório reúne o algoritmo que desenvolvi no Flowgorithm para praticar estruturas de decisão, manipulação de variáveis e fluxo de execução de dados. O objetivo do projeto foi integrar duas utilidades práticas em um único programa: uma calculadora de Índice de Massa Corporal (IMC) e uma calculadora para área de figuras geométricas.
-
----
-
-## Visão Geral do Projeto
-
-O programa funciona com base em um menu de navegação que permite ao usuário escolher qual operação deseja realizar logo no início da execução.
-
-1. **Calculadora de IMC**: Recebe a altura e o peso do usuário, calcula o valor do IMC e indica em qual faixa de peso a pessoa se encontra.
-2. **Calculadora de Áreas**: Apresenta um submenu com quatro opções de formas geométricas (quadrado, retângulo, triângulo e círculo), solicita as medidas necessárias para a opção escolhida e retorna o resultado da área.
+**Aluno:** Arthur de Aguiar Santos  
 
 ---
 
-## Conceitos Lógicos e Aprendizados
+## Objetivo do Programa
 
-A construção desse fluxo me permitiu exercitar conceitos fundamentais da lógica de programação diretamente no ambiente gráfico de fluxogramas.
+O objetivo deste programa é aplicar os conceitos de lógica de programação, estruturas condicionais e manipulação de variáveis desenvolvidos no Flowgorithm. O algoritmo foi criado para automatizar cálculos rotineiros — biométricos e geométricos — em uma única interface sequencial e intuitiva para o usuário.
 
-### Controle de Fluxo e Condicionais Encadeadas
-Para lidar com múltiplas escolhas de navegação e faixas de resultados, utilizei estruturas de decisão aninhadas (`se / senão`).
+---
 
-- **Navegação de Menus**: Como o Flowgorithm trabalha de forma sequencial, estruturei condicionais para direcionar o usuário entre as ferramentas e, no caso da calculadora de áreas, entre as figuras geométricas disponíveis.
-- **Classificação do IMC**: Utilizei comparações condicionais para encaixar o valor calculado dentro das faixas estabelecidas de saúde:
-  - IMC abaixo de 18.5: Abaixo do peso
-  - IMC entre 18.5 e 24.9: Peso ideal
-  - IMC entre 25.0 e 29.9: Sobrepeso
-  - IMC acima de 30.0: Obesidade
+## Descrição Resumida do Funcionamento
 
-### Tipagem de Dados e Variáveis
-Trabalhei com dois tipos principais de dados durante a execução do programa:
+O programa inicia exibindo um menu principal no qual o usuário escolhe a operação desejada. Dependendo da opção selecionada, o fluxo direciona a execução para um módulo específico:
 
-- **Inteiro (`Integer`)**: Aplicado às variáveis que controlam a escolha dos menus, onde o usuário precisa digitar apenas um número de opção.
-- **Real (`Real`)**: Aplicado a todas as variáveis que envolvem medidas e cálculos matemáticos (peso, altura, raio, base, etc.), garantindo a precisão necessária para números decimais.
+- **Módulo de IMC**: O sistema solicita as medidas de peso e altura, realiza o cálculo e retorna a classificação correspondente.
+- **Módulo de Áreas Geométricas**: O sistema abre um submenu com diferentes formas geométricas, solicita os dados necessários da figura escolhida, realiza a operação aritmética e exibe o resultado final da área.
 
-### Expressões Matemáticas
-Cada cálculo foi convertido em uma expressão algorítmica simples de entender:
+Ao término do fluxo selecionado, o programa exibe as informações formatadas na tela.
 
-- **Área do Quadrado**: `lado * lado`
-- **Área do Retângulo**: `base * altura`
-- **Área do Triângulo**: `(base * altura) / 2`
-- **Área do Círculo**: `3.14 * (raio * raio)`
-- **Cálculo do IMC**: `peso / (altura * altura)`
+---
 
-## Conclusão
+## Relação das Funções Implementadas
 
-Desenvolver este projeto no Flowgorithm foi um ótimo exercício para reforçar o pensamento estruturado e a organização de etapas em um sistema. A prática ajudou a consolidar o entendimento sobre como organizar entradas, aplicar condicionais e exibir saídas de forma coerente.
+O programa abrange quatro rotinas principais de cálculo geométrico, além da rotina biométrica:
+
+1. **Cálculo da Área do Quadrado**: Multiplica a medida do lado por si mesma ($A = L^2$).
+2. **Cálculo da Área do Retângulo**: Multiplica a base pela altura ($A = b \times h$).
+3. **Cálculo da Área do Triângulo**: Multiplica a base pela altura e divide o resultado por dois ($A = \frac{b \times h}{2}$).
+4. **Cálculo da Área do Círculo**: Eleva o raio ao quadrado e multiplica pela constante Pi ($A = \pi \times r^2$).
+
+---
+
+## Indicação das Funções Obrigatórias
+
+Conforme os requisitos da atividade, as duas funcionalidades estruturais obrigatórias integradas ao algoritmo são:
+
+1. **Calculadora de IMC**: Função responsável por relacionar massa corporal e estatura, classificando o resultado entre faixas de saúde (Abaixo do peso, Peso ideal, Sobrepeso e Obesidade).
+2. **Calculadora de Área**: Função responsável por processar as medidas de figuras geométricas planas através da seleção via menu.
+
+---
+
+## Instruções Básicas para Execução do Programa
+
+1. Baixe e instale o software **Flowgorithm** em seu computador.
+2. Abra o arquivo do projeto (`flowalgoritmo-calculadoras.fprg`) na ferramenta.
+3. Clique no botão de execução (ícone de **Play** verde na barra superior) ou pressione **F5**.
+4. No console de exibição:
+   - Digite `1` para acessar a **Calculadora de IMC** ou `2` para a **Calculadora de Área**.
+   - Se escolher a opção `2`, digite o número correspondente à forma geométrica desejada (`1` para Quadrado, `2` para Retângulo, `3` para Triângulo e `4` para Círculo).
+5. Insira os valores numéricos solicitados (como peso, altura, base, altura ou raio) e pressione **Enter** após cada digitação para visualizar o resultado.
