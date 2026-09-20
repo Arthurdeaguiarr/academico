@@ -50,3 +50,12 @@ O sistema foi desenvolvido para resolver o desafio de monitoramento contínuo da
 * **Objetivo:** Garantir que o programa recuse strings, caracteres alfabéticos, valores mistos e temperaturas abaixo do limite físico de -20.0 °C sem quebrar o fluxo ou corromper as métricas.
 * **Passos:** Tentar inserir `"cem"` e `-25.0` na definição do limite; posteriormente, tentar inserir `"45abc"` e `-30.0` durante as leituras do sensor, encerrando com `-999`.
 * **Resultado Esperado:** Em cada tentativa inválida, o programa exibe uma mensagem de erro clara, descarta o dado corrompido, impede o incremento de leituras válidas e aguarda uma entrada correta.
+
+---
+
+## Justificativa das Estruturas de Repetição
+
+A escolha combinada das estruturas `do...while` e `while (1)` baseou-se na necessidade de controle de fluxo de entrada e monitoramento contínuo:
+
+* **Onde o `do...while` foi importante:** Na etapa inicial de solicitação e validação do limite de temperatura. A diferença de testar a condição *depois* da execução foi crucial aqui porque **a pergunta precisa ser feita obrigatoriamente pelo menos uma vez** antes que qualquer validação possa ocorrer. Se o usuário digitar um valor inválido, o bloco repete; caso contrário, avança de imediato.
+* **Onde o `while (1)` foi importante:** No loop principal de recepção das leituras do sensor. Como o fluxo de dados em um ambiente industrial ou climático é contínuo e tem tamanho indeterminado, um loop indefinido controlado por interrupções internas (o comando sentinela `-999` ou a parada automática de segurança por 3 violações consecutivas) garante que o programa continue rodando de forma flexível até que uma condição crítica de parada seja atingida.
