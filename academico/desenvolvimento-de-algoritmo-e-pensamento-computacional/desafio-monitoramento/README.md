@@ -1,9 +1,9 @@
 # Desafio Monitoramento
 
-**Nome:** Arthur de Aguiar Santos  
-**Disciplina:** Algoritmos e Pensamento Computacional  
-**Professora:** Profa. Karla Sartin  
-**Título do projeto:** Desafio Monitoramento  
+**Nome:** Arthur de Aguiar Santos.
+**Disciplina:** Algoritmos e Pensamento Computacional.  
+**Professora:** Profa. Karla Sartin.  
+**Título do projeto:** Desafio Monitoramento.  
 
 ---
 
