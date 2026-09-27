@@ -72,5 +72,3 @@ Elementos armazenados no vetor:
 ## Captura de Tela da Execução
 
 <img width="1349" height="585" alt="teste" src="https://github.com/user-attachments/assets/e4a43d14-49b4-4c93-9f2b-de6cb45e4eb5" />
-
-Abaixo segue a evidência da execução correta do programa com os dados testados: *(Ver print da tela anexado ao relatório do projeto)*
