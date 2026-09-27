@@ -28,6 +28,7 @@ O programa foi estruturado em três etapas principais:
 
 3. **Exibição de Resultados:** O programa imprime as informações calculadas de forma organizada. Por fim, todos os 20 elementos do vetor são exibidos em formato de lista.
 
+### Exemplo de Entrada
 ```
 Elemento [1]: 6
 Elemento [2]: 5
