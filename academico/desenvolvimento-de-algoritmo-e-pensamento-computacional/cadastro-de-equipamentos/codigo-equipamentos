@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <string.h>
+
+#define ARQUIVO "equipamentos.txt"
+#define TAM_NOME 100
+#define TAM_CODIGO 50
+#define TAM_LOCAL 100
+#define TAM_LINHA 300
+
+/* Remove o '\n' que o fgets deixa no final da string. */
+void removerQuebraLinha(char *texto) {
+    texto[strcspn(texto, "\n")] = '\0';
+}
+
+/* Troca ';' por ',' para não quebrar o formato do arquivo. */
+void substituirSeparador(char *texto) {
+    for (int i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] == ';') {
+            texto[i] = ',';
+        }
+    }
+}
+
+/* Descarta o que sobrou no buffer quando a entrada é maior que o limite. */
+void limparBuffer(const char *texto) {
+    if (strchr(texto, '\n') == NULL) {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF) {
+        }
+    }
+}
+
+/* Mostra o rótulo e lê um campo de texto, tratando entrada vazia. */
+void lerCampo(const char *rotulo, char *destino, int tamanho) {
+    do {
+        printf("%s", rotulo);
+        if (fgets(destino, tamanho, stdin) == NULL) {
+            destino[0] = '\0';
+            return;
+        }
+        limparBuffer(destino);
+        removerQuebraLinha(destino);
+        substituirSeparador(destino);
+        if (destino[0] == '\0') {
+            printf("  Campo obrigatorio. Tente novamente.\n");
+        }
+    } while (destino[0] == '\0');
+}
+
+void cadastrarEquipamento(void) {
+    char nome[TAM_NOME];
+    char codigo[TAM_CODIGO];
+    char local[TAM_LOCAL];
+
+    printf("\n--- CADASTRAR EQUIPAMENTO ---\n");
+    lerCampo("Nome do equipamento: ", nome, sizeof(nome));
+    lerCampo("Codigo de identificacao: ", codigo, sizeof(codigo));
+    lerCampo("Localizacao: ", local, sizeof(local));
+
+    /* Modo "a" (append): preserva os registros já existentes. */
+    FILE *arquivo = fopen(ARQUIVO, "a");
+    if (arquivo == NULL) {
+        printf("Erro: nao foi possivel abrir o arquivo %s.\n", ARQUIVO);
+        return;
+    }
+
+    fprintf(arquivo, "%s;%s;%s\n", nome, codigo, local);
+    fclose(arquivo);
+
+    printf("Equipamento cadastrado com sucesso!\n");
+}
+
+void listarEquipamentos(void) {
+    char linha[TAM_LINHA];
+    char nome[TAM_NOME];
+    char codigo[TAM_CODIGO];
+    char local[TAM_LOCAL];
+    int total = 0;
+
+    printf("\n--- EQUIPAMENTOS CADASTRADOS ---\n");
+
+    FILE *arquivo = fopen(ARQUIVO, "r");
+    if (arquivo == NULL) {
+        printf("Nenhum equipamento cadastrado ainda.\n");
+        return;
+    }
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        removerQuebraLinha(linha);
+        if (sscanf(linha, "%99[^;];%49[^;];%99[^\n]", nome, codigo, local) == 3) {
+            total++;
+            printf("\nEquipamento %d\n", total);
+            printf("  Nome       : %s\n", nome);
+            printf("  Codigo     : %s\n", codigo);
+            printf("  Localizacao: %s\n", local);
+        }
+    }
+
+    fclose(arquivo);
+
+    if (total == 0) {
+        printf("Nenhum equipamento cadastrado ainda.\n");
+    } else {
+        printf("\nTotal: %d equipamento(s).\n", total);
+    }
+}
+
+int main(void) {
+    char entrada[20];
+    int opcao = 0;
+
+    do {
+        printf("\n==============================\n");
+        printf("  CADASTRO DE EQUIPAMENTOS\n");
+        printf("==============================\n");
+        printf("1 - Cadastrar equipamento\n");
+        printf("2 - Listar equipamentos\n");
+        printf("3 - Sair\n");
+        printf("Escolha uma opcao: ");
+
+        if (fgets(entrada, sizeof(entrada), stdin) == NULL) {
+            break;
+        }
+        limparBuffer(entrada);
+
+        if (sscanf(entrada, "%d", &opcao) != 1) {
+            opcao = 0;
+        }
+
+        switch (opcao) {
+            case 1:
+                cadastrarEquipamento();
+                break;
+            case 2:
+                listarEquipamentos();
+                break;
+            case 3:
+                printf("Encerrando o programa. Ate logo!\n");
+                break;
+            default:
+                printf("Opcao invalida. Escolha 1, 2 ou 3.\n");
+        }
+    } while (opcao != 3);
+
+    return 0;
+}
